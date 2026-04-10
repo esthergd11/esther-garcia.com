@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\Esther García\\\\Desktop\\\\CLAUDE WEB ESTHER\" /a)",
+      "Bash(gh api:*)",
+      "Bash(gh repo:*)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(cmd /c \"git --version & gh --version & echo done\")",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(cmd /c \"cd /d \\\\\"C:\\\\Users\\\\Esther García\\\\Desktop\\\\CLAUDE WEB ESTHER\\\\\" && git status 2>&1 && echo ---STATUS_OK---\")",
+      "Bash(git -C \"C:\\\\Users\\\\Esther García\\\\Desktop\\\\CLAUDE WEB ESTHER\" config user.email \"esther@esther-garcia.com\")",
+      "Bash(git -C \"C:\\\\Users\\\\Esther García\\\\Desktop\\\\CLAUDE WEB ESTHER\" config user.name \"Esther Garcia\")",
+      "Bash(git -C \"C:\\\\Users\\\\Esther García\\\\Desktop\\\\CLAUDE WEB ESTHER\" add .)"
+    ]
+  }
+}
