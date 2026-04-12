@@ -176,6 +176,15 @@
                     </div>
                 </div>
 
+                <div class="exp__item exp__item--edu reveal">
+                    <div class="exp__body">
+                        <div class="exp__company">ESCP Europe Business School</div>
+                        <div class="exp__role exp__role--edu">Curso impartido</div>
+                        <p>Publicidad digital para expansión internacional — SEM y paid media. Formación especializada para estudiantes de negocios con proyección internacional.</p>
+                        <div class="exp__tags"><span>SEM</span><span>Paid Media</span><span>Internacional</span></div>
+                    </div>
+                </div>
+
                 <div class="exp__item reveal">
                     <div class="exp__body">
                         <div class="exp__company">agenciaSEO.eu</div>
@@ -194,15 +203,6 @@
                     </div>
                 </div>
 
-                <div class="exp__item exp__item--edu reveal">
-                    <div class="exp__body">
-                        <div class="exp__company">ESCP Europe Business School</div>
-                        <div class="exp__role exp__role--edu">Curso impartido</div>
-                        <p>Publicidad digital para expansión internacional — SEM y paid media. Formación especializada para estudiantes de negocios con proyección internacional.</p>
-                        <div class="exp__tags"><span>SEM</span><span>Paid Media</span><span>Internacional</span></div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -212,37 +212,40 @@
         <div class="container">
             <div class="section-label reveal">Blog</div>
             <h2 class="section-title reveal">Últimos<br><em>artículos</em></h2>
-            <div class="articles__list">
-                <a href="#" class="article-item reveal">
-                    <div class="article-item__left">
-                        <div class="article-item__meta">
-                            <span class="article-item__tag">Google Ads</span>
-                            <span class="article-item__date">15 Mar 2025</span>
-                        </div>
+            <div class="articles__browser reveal">
+                <!-- Barra de pestañas -->
+                <div class="articles__tabbar">
+                    <div class="articles__tab">
+                        <span class="articles__tab-dots"><i></i><i></i><i></i></span>
+                        <span class="articles__tab-label">Google Ads</span>
+                        <span class="articles__tab-date">15 Mar 2025</span>
+                    </div>
+                    <div class="articles__tab">
+                        <span class="articles__tab-dots"><i></i><i></i><i></i></span>
+                        <span class="articles__tab-label">TikTok Ads</span>
+                        <span class="articles__tab-date">28 Feb 2025</span>
+                    </div>
+                    <div class="articles__tab">
+                        <span class="articles__tab-dots"><i></i><i></i><i></i></span>
+                        <span class="articles__tab-label">PMax</span>
+                        <span class="articles__tab-date">10 Feb 2025</span>
+                    </div>
+                </div>
+                <!-- Paneles de artículos -->
+                <div class="articles__panels">
+                    <a href="#" class="articles__panel">
                         <h3>5 errores comunes en campañas de Google Ads (y cómo evitarlos)</h3>
-                    </div>
-                    <span class="article-item__arrow">→</span>
-                </a>
-                <a href="#" class="article-item reveal">
-                    <div class="article-item__left">
-                        <div class="article-item__meta">
-                            <span class="article-item__tag">TikTok Ads</span>
-                            <span class="article-item__date">28 Feb 2025</span>
-                        </div>
+                        <span class="articles__panel-arrow">→</span>
+                    </a>
+                    <a href="#" class="articles__panel">
                         <h3>TikTok Ads en 2025: por qué debería estar en tu mix de paid media</h3>
-                    </div>
-                    <span class="article-item__arrow">→</span>
-                </a>
-                <a href="#" class="article-item reveal">
-                    <div class="article-item__left">
-                        <div class="article-item__meta">
-                            <span class="article-item__tag">PMax</span>
-                            <span class="article-item__date">10 Feb 2025</span>
-                        </div>
+                        <span class="articles__panel-arrow">→</span>
+                    </a>
+                    <a href="#" class="articles__panel">
                         <h3>PMax vs campañas tradicionales: cuándo usar cada una (y cuándo no)</h3>
-                    </div>
-                    <span class="article-item__arrow">→</span>
-                </a>
+                        <span class="articles__panel-arrow">→</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -305,6 +308,16 @@
             <a href="https://www.linkedin.com/in/esthergarcia1999/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     </footer>
+
+    <!-- INDICADOR DE PROGRESO LATERAL -->
+    <nav class="page-progress" id="pageProgress" aria-label="Posición en la página">
+        <a href="#inicio"      class="pp__dot" data-label="Inicio"></a>
+        <a href="#sobre-mi"    class="pp__dot" data-label="Sobre mí"></a>
+        <a href="#servicios"   class="pp__dot" data-label="Servicios"></a>
+        <a href="#experiencia" class="pp__dot" data-label="Experiencia"></a>
+        <a href="#articulos"   class="pp__dot" data-label="Blog"></a>
+        <a href="#contacto"    class="pp__dot" data-label="Contacto"></a>
+    </nav>
 
     <script src="js/main.js"></script>
 </body>
