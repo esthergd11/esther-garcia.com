@@ -257,7 +257,7 @@ body::after {
 }
 
 /* Separador ✦ entre secciones */
-.about::before, .experience::before, .services::before, .articles::before {
+.about::before, .experience::before, .articles::before {
     content: '✦';
     display: block; text-align: center;
     font-size: 0.65rem; color: var(--accent); opacity: 0.5;
@@ -267,7 +267,7 @@ body::after {
 /* ═══════════════════════════════════════════════════════════════
    SOBRE MÍ
 ═══════════════════════════════════════════════════════════════ */
-.about { padding: 140px 0; border-top: 1px solid var(--border); }
+.about { padding: 140px 0 60px; border-top: 1px solid var(--border); }
 .about__grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
@@ -419,6 +419,42 @@ body::after {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   TICKER ANIMADO
+═══════════════════════════════════════════════════════════════ */
+.ticker {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 13px 0;
+    background: var(--bg);
+    cursor: default;
+}
+.ticker__track {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    white-space: nowrap;
+    width: max-content;
+    animation: tickerScroll 28s linear infinite;
+}
+.ticker:hover .ticker__track { animation-play-state: paused; }
+.ticker__track span {
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    transition: color 0.2s;
+}
+.ticker__track span:hover { color: var(--accent); }
+.ticker__track em {
+    font-style: normal;
+    font-size: 0.45rem;
+    color: var(--accent);
+    opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    SERVICIOS — 3 columnas altas, 3 colores distintos
 ═══════════════════════════════════════════════════════════════ */
 .services {
@@ -426,7 +462,7 @@ body::after {
     border-top: none;
 }
 .services::before { top: 0; padding-top: 20px; background: var(--bg); display: block; }
-.services .container { padding-top: 140px; }
+.services .container { padding-top: 80px; }
 .services .section-label { color: var(--muted); }
 .services .section-title em { color: var(--accent); }
 
@@ -703,7 +739,8 @@ body::after {
 @keyframes fadeIn      { from { opacity: 0; }              to { opacity: 1; } }
 @keyframes wordUp      { from { opacity: 0; transform: translateY(105%); } to { opacity: 1; transform: none; } }
 @keyframes scrollLine  { 0% { top: -100%; } 100% { top: 100%; } }
-@keyframes funnelFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+@keyframes funnelFloat  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+@keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE — TABLET (≤ 960px)
