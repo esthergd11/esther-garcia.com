@@ -73,6 +73,21 @@ function updateFunnel() {
 window.addEventListener('scroll', updateFunnel, { passive: true });
 updateFunnel();
 
+/* ── PALABRA ROTATORIA (STATEMENT) ──────────────────────────── */
+const rotWords = document.querySelectorAll('.rot-word');
+let rotIdx = 0;
+
+if (rotWords.length) {
+    setInterval(() => {
+        rotWords[rotIdx].classList.remove('active');
+        rotWords[rotIdx].classList.add('exit');
+        const prev = rotIdx;
+        rotIdx = (rotIdx + 1) % rotWords.length;
+        rotWords[rotIdx].classList.add('active');
+        setTimeout(() => rotWords[prev].classList.remove('exit'), 500);
+    }, 2200);
+}
+
 /* ── INDICADOR LATERAL DE PROGRESO ──────────────────────────── */
 const ppDots    = document.querySelectorAll('.pp__dot');
 const ppSections = Array.from(ppDots).map(dot =>

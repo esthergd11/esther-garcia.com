@@ -482,6 +482,67 @@ body::after {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   STATEMENT — bloque de texto grande con palabra rotatoria
+═══════════════════════════════════════════════════════════════ */
+.statement {
+    padding: 80px 0 60px;
+    overflow: hidden;
+}
+.statement__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+.statement__line {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7.5vw, 7.2rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    /* Líneas impares alineadas a la izquierda, pares a la derecha — efecto jopecuro */
+}
+.statement__line:nth-child(even) { text-align: right; }
+.statement__line:nth-child(odd)  { text-align: left; }
+
+/* Palabra rotatoria */
+.statement__rotate {
+    display: inline-block;
+    position: relative;
+    vertical-align: bottom;
+    min-width: 4ch;
+    height: 1.05em;
+    overflow: hidden;
+}
+.rot-word {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateY(60%);
+    transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+    white-space: nowrap;
+}
+.rot-word.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.rot-word.exit {
+    opacity: 0;
+    transform: translateY(-60%);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.statement__dot {
+    font-style: normal;
+    color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
    TICKER ANIMADO
 ═══════════════════════════════════════════════════════════════ */
 .ticker {
@@ -715,9 +776,30 @@ body::after {
     -webkit-backdrop-filter: blur(24px);
 }
 .contact .section-label { color: rgba(255,255,255,0.35); }
-.contact .section-title { color: #fff; }
-.contact .section-title em { color: var(--accent-mid); }
-.contact__sub { font-size: 1rem; color: rgba(255,255,255,0.4); margin-top: -40px; margin-bottom: 80px; }
+
+/* Título grande estilo jopecuro */
+.contact__big-title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+.contact__big-line {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 7vw, 7rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+.contact__big-line:nth-child(even) { text-align: right; }
+.contact__big-line--accent {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-mid);
+    text-align: left;
+}
+.contact__sub { font-size: 1rem; color: rgba(255,255,255,0.4); margin-top: 20px; margin-bottom: 80px; }
 .contact__grid { display: grid; grid-template-columns: 1fr 1.7fr; gap: 80px; align-items: start; }
 .contact__info { display: flex; flex-direction: column; gap: 44px; }
 .contact__detail span {
@@ -841,6 +923,8 @@ body::after {
     .services__cards { grid-template-columns: 1fr; gap: 16px; padding: 0 24px 80px; }
     .svc { min-height: auto; }
 
+    .statement__line { font-size: clamp(2.2rem, 6vw, 4rem); }
+    .contact__big-line { font-size: clamp(2.4rem, 6vw, 4.5rem); }
     .articles__grid { grid-template-columns: 1fr; gap: 16px; }
 
     .page-progress { display: none; }
@@ -870,6 +954,9 @@ body::after {
     .hero__scroll { right: 24px; }
 
     .about, .experience, .articles, .contact { padding: 96px 0; }
+    .statement { padding: 48px 0 40px; }
+    .statement__inner { padding: 0 24px; }
+    .statement__line { font-size: clamp(2rem, 8vw, 3rem); }
     .services .container { padding-top: 96px; }
     .section-title { margin-bottom: 48px; }
 
