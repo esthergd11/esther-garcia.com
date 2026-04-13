@@ -18,6 +18,7 @@
     --glass-dark: rgba(22,22,20,0.65);
     --serif:      'Fraunces', Georgia, serif;
     --sans:       'Inter', system-ui, sans-serif;
+    --display:    'Manrope', 'Inter', system-ui, sans-serif;
     --ease:       cubic-bezier(0.4, 0, 0.2, 1);
     --ease-out:   cubic-bezier(0, 0, 0.2, 1);
 }
@@ -332,11 +333,11 @@ body::after {
 }
 .about__content h2,
 .about__name {
-    font-family: var(--sans);
-    font-size: clamp(1.9rem, 3.2vw, 2.8rem);
-    font-weight: 700;
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 800;
     line-height: 1.0;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
     margin-bottom: 36px;
 }
 .about__text p {
@@ -485,48 +486,64 @@ body::after {
    STATEMENT — bloque de texto grande con palabra rotatoria
 ═══════════════════════════════════════════════════════════════ */
 .statement {
-    padding: 80px 0 60px;
-    overflow: hidden;
+    padding: 100px 0 80px;
 }
 .statement__inner {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 48px;
 }
+.statement__block { }
+
 .statement__line {
     display: block;
-    font-family: var(--serif);
-    font-size: clamp(3rem, 7.5vw, 7.2rem);
-    font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.03em;
+    font-family: 'Manrope', var(--sans);
+    font-size: clamp(3.2rem, 8vw, 8rem);
+    font-weight: 200;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
     color: var(--text);
-    /* Líneas impares alineadas a la izquierda, pares a la derecha — efecto jopecuro */
 }
-.statement__line:nth-child(even) { text-align: right; }
 .statement__line:nth-child(odd)  { text-align: left; }
+.statement__line:nth-child(even) { text-align: right; font-weight: 800; }
 
-/* Palabra rotatoria */
+/* La línea con la palabra rotatoria */
+.statement__line--rotate {
+    text-align: right;
+    font-weight: 800;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 0;
+    overflow: visible;
+}
+
+/* Contenedor de la palabra rotatoria */
 .statement__rotate {
     display: inline-block;
     position: relative;
-    vertical-align: bottom;
-    min-width: 4ch;
+    /* La altura se fija al tamaño de la fuente */
     height: 1.05em;
+    /* El ancho se adapta a la palabra más larga */
+    min-width: 5ch;
     overflow: hidden;
+    vertical-align: bottom;
 }
+
 .rot-word {
     display: block;
     position: absolute;
-    left: 0;
+    right: 0;
     bottom: 0;
-    font-style: italic;
-    font-weight: 300;
+    font-family: 'Manrope', var(--sans);
+    font-size: clamp(3.2rem, 8vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
     color: var(--accent);
-    opacity: 0;
-    transform: translateY(60%);
-    transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
     white-space: nowrap;
+    opacity: 0;
+    transform: translateY(110%);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 .rot-word.active {
     opacity: 1;
@@ -534,12 +551,15 @@ body::after {
 }
 .rot-word.exit {
     opacity: 0;
-    transform: translateY(-60%);
+    transform: translateY(-110%);
     transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
 }
+
 .statement__dot {
-    font-style: normal;
     color: var(--accent);
+    font-family: 'Manrope', var(--sans);
+    font-weight: 800;
+    flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -923,7 +943,7 @@ body::after {
     .services__cards { grid-template-columns: 1fr; gap: 16px; padding: 0 24px 80px; }
     .svc { min-height: auto; }
 
-    .statement__line { font-size: clamp(2.2rem, 6vw, 4rem); }
+    .statement__line, .rot-word { font-size: clamp(2rem, 6vw, 4rem); }
     .contact__big-line { font-size: clamp(2.4rem, 6vw, 4.5rem); }
     .articles__grid { grid-template-columns: 1fr; gap: 16px; }
 
@@ -956,7 +976,7 @@ body::after {
     .about, .experience, .articles, .contact { padding: 96px 0; }
     .statement { padding: 48px 0 40px; }
     .statement__inner { padding: 0 24px; }
-    .statement__line { font-size: clamp(2rem, 8vw, 3rem); }
+    .statement__line, .rot-word { font-size: clamp(1.8rem, 8vw, 3rem); }
     .services .container { padding-top: 96px; }
     .section-title { margin-bottom: 48px; }
 

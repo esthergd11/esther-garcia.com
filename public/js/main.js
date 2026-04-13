@@ -74,18 +74,30 @@ window.addEventListener('scroll', updateFunnel, { passive: true });
 updateFunnel();
 
 /* ── PALABRA ROTATORIA (STATEMENT) ──────────────────────────── */
-const rotWords = document.querySelectorAll('.rot-word');
+const rotWords   = document.querySelectorAll('.rot-word');
+const rotContainer = document.querySelector('.statement__rotate');
 let rotIdx = 0;
 
+function setRotWidth() {
+    if (!rotContainer || !rotWords.length) return;
+    // Mide la palabra activa y ajusta el ancho del contenedor
+    const active = rotWords[rotIdx];
+    rotContainer.style.width = active.scrollWidth + 'px';
+}
+
 if (rotWords.length) {
+    // Ajuste inicial tras cargar fuentes
+    document.fonts.ready.then(setRotWidth);
+
     setInterval(() => {
         rotWords[rotIdx].classList.remove('active');
         rotWords[rotIdx].classList.add('exit');
         const prev = rotIdx;
         rotIdx = (rotIdx + 1) % rotWords.length;
         rotWords[rotIdx].classList.add('active');
+        setRotWidth();
         setTimeout(() => rotWords[prev].classList.remove('exit'), 500);
-    }, 2200);
+    }, 2400);
 }
 
 /* ── INDICADOR LATERAL DE PROGRESO ──────────────────────────── */
