@@ -100,6 +100,65 @@ if (rotWords.length) {
     }, 2400);
 }
 
+/* ── POPUP EXPERIENCIA ───────────────────────────────────────── */
+const expData = [
+    {
+        num: '01',
+        company: 'Dark Moon Academia',
+        role: 'Profesora Paid Media',
+        desc: 'Formaciones de TikTok Ads, PMax & Demand Gen, Estrategias de Búsqueda y Técnicas de Optimización en Google Ads. Comunidad PPC de referencia en habla hispana.',
+        tags: ['Formación', 'TikTok Ads', 'Google Ads', 'PMax']
+    },
+    {
+        num: '02',
+        company: 'ESCP Europe Business School',
+        role: 'Curso impartido',
+        desc: 'Publicidad digital para expansión internacional — SEM y paid media. Formación especializada para estudiantes de negocios con proyección internacional.',
+        tags: ['SEM', 'Paid Media', 'Internacional']
+    },
+    {
+        num: '03',
+        company: 'agenciaSEO.eu',
+        role: 'Gestora de cuentas PPC/SEM',
+        desc: 'Gestión y optimización de campañas en Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads y Spotify Ads. Análisis de datos con GTM y Looker Studio. Formación de perfiles junior.',
+        tags: ['Google Ads', 'Meta Ads', 'TikTok Ads', 'Looker Studio']
+    },
+    {
+        num: '04',
+        company: 'CrackPPC',
+        role: 'PPC/SEM Account Manager',
+        desc: 'Agencia especializada en performance. Gestión de cuentas de clientes ecommerce y lead generation, con foco en análisis de datos y optimización continua.',
+        tags: ['Performance', 'Ecommerce', 'Lead Gen']
+    }
+];
+
+const expOverlay = document.getElementById('expOverlay');
+const expClose   = document.getElementById('expClose');
+
+document.querySelectorAll('.exp__card').forEach(card => {
+    card.addEventListener('click', () => {
+        const idx  = parseInt(card.dataset.exp);
+        const data = expData[idx];
+        document.getElementById('mNum').textContent     = data.num;
+        document.getElementById('mCompany').textContent = data.company;
+        document.getElementById('mRole').textContent    = data.role;
+        document.getElementById('mDesc').textContent    = data.desc;
+        document.getElementById('mTags').innerHTML      = data.tags.map(t => `<span>${t}</span>`).join('');
+        expOverlay.classList.add('open');
+        expOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeExpModal() {
+    expOverlay.classList.remove('open');
+    expOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+expClose?.addEventListener('click', closeExpModal);
+expOverlay?.addEventListener('click', e => { if (e.target === expOverlay) closeExpModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExpModal(); });
+
 /* ── INDICADOR LATERAL DE PROGRESO ──────────────────────────── */
 const ppDots    = document.querySelectorAll('.pp__dot');
 const ppSections = Array.from(ppDots).map(dot =>
