@@ -223,6 +223,62 @@ body::after {
     padding: 2px 0;
 }
 
+/* ── FLOATING METRIC WIDGETS ─────────────────────────────────── */
+.hm {
+    position: absolute;
+    background: rgba(247,245,240,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    pointer-events: none;
+}
+
+/* ROAS card — esquina inferior izquierda */
+.hm--roas {
+    bottom: 120px;
+    left: 48px;
+    min-width: 130px;
+    opacity: 0;
+    animation: fadeIn 0.8s 1.4s var(--ease-out) forwards, floatA 5s 2.2s ease-in-out infinite;
+}
+.hm__top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+}
+.hm__label {
+    font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.16em; color: var(--muted);
+}
+.hm__badge {
+    font-size: 0.68rem; color: #22c55e; font-weight: 700;
+    background: rgba(34,197,94,0.1); border-radius: 4px; padding: 1px 5px;
+}
+.hm__value {
+    display: block;
+    font-family: var(--sans); font-size: 1.8rem; font-weight: 700;
+    letter-spacing: -0.04em; color: var(--text); line-height: 1;
+    margin-bottom: 10px;
+}
+.hm__value em { font-style: normal; font-size: 1.1rem; font-weight: 400; color: var(--muted); }
+.hm__spark { width: 100%; height: 24px; color: var(--accent); display: block; }
+
+/* Badge conversiones — lateral derecho, arriba */
+.hm--ctr {
+    top: 38%;
+    right: 180px;
+    display: flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeIn 0.8s 1.8s var(--ease-out) forwards, floatB 6s 2.8s ease-in-out infinite;
+}
+.hm__icon { font-size: 0.9rem; }
+.hm__ctr-text {
+    font-size: 0.8rem; color: var(--muted);
+}
+.hm__ctr-text strong { color: var(--accent); font-weight: 600; }
+
 /* ── FUNNEL DECO (dashed SVG) ────────────────────────────────── */
 .hero__funnel-deco {
     position: absolute;
@@ -273,10 +329,14 @@ body::after {
     grid-template-columns: 1.4fr 1fr;
     gap: 80px; align-items: start;
 }
-.about__content h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 36px;
+.about__content h2,
+.about__name {
+    font-family: var(--sans);
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 36px;
 }
 .about__text p {
     font-size: 0.98rem; color: var(--muted); line-height: 1.85;
@@ -741,12 +801,15 @@ body::after {
 @keyframes scrollLine  { 0% { top: -100%; } 100% { top: 100%; } }
 @keyframes funnelFloat  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
 @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes floatA { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(0.5deg); } }
+@keyframes floatB { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(8px); } }
 
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE — TABLET (≤ 960px)
 ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 960px) {
     .hero__funnel-deco { display: none; }
+    .hm { display: none; }
 
     .about__grid { grid-template-columns: 1fr; gap: 56px; }
     .about__photo-wrap { position: static; }
