@@ -134,7 +134,8 @@ body::after {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+    padding-top: 120px;
     padding-bottom: 72px;
     position: relative;
     overflow: hidden;
@@ -155,7 +156,7 @@ body::after {
     font-size: clamp(3.8rem, 9vw, 8rem);
     font-weight: 400; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 56px;
 }
-.hero__line { display: block; overflow: hidden; }
+.hero__line { display: block; overflow: visible; padding-bottom: 0.08em; }
 .hero__line em { font-style: italic; font-weight: 300; color: var(--accent); }
 .word {
     display: inline-block; opacity: 0; transform: translateY(105%);
@@ -333,12 +334,12 @@ body::after {
 }
 .about__content h2,
 .about__name {
-    font-family: var(--serif);
-    font-size: clamp(2.2rem, 3.6vw, 3.2rem);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.2vw, 2.9rem);
+    font-weight: 200;
+    font-style: normal;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
     margin-bottom: 36px;
     color: var(--text);
 }
@@ -683,7 +684,7 @@ body::after {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SERVICIOS — 3 columnas altas, 3 colores distintos
+   SERVICIOS — filas editoriales
 ═══════════════════════════════════════════════════════════════ */
 .services {
     padding-top: 0;
@@ -694,119 +695,68 @@ body::after {
 .services .section-label { color: var(--muted); }
 .services .section-title em { color: var(--accent); }
 
-.services__cards {
+.svc-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+}
+
+.svc-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 0;
-    gap: 16px;
-    padding: 0 48px 60px;
-    max-width: 1296px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Cada tarjeta de servicio */
-.svc {
-    background: rgba(250,250,248,0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.75);
-    border-radius: 18px;
-    padding: 32px 28px 28px;
-    display: flex;
-    flex-direction: column;
-    min-height: 260px;
+    grid-template-columns: 56px 1fr 1.2fr 32px;
+    align-items: center;
+    gap: 48px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border-s);
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.25s;
     position: relative;
-    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s;
 }
-.svc:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 56px rgba(45,94,78,0.13);
-    background: rgba(250,250,248,0.85);
+.svc-row:first-child { border-top: 1px solid var(--border-s); }
+.svc-row::before {
+    content: '';
+    position: absolute;
+    left: -24px; right: -24px; top: 0; bottom: 0;
+    background: rgba(45,94,78,0.04);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
 }
+.svc-row:hover::before { opacity: 1; }
+.svc-row:hover .svc-row__title { color: var(--accent); }
+.svc-row:hover .svc-row__arrow { transform: translateX(6px); color: var(--accent); }
 
-.svc--dark {
-    background: rgba(22,22,20,0.72);
-    border-color: rgba(255,255,255,0.1);
-}
-.svc--dark:hover {
-    background: rgba(22,22,20,0.85);
-    box-shadow: 0 20px 56px rgba(0,0,0,0.25);
-}
-.svc--dark .svc__num { color: var(--accent-mid); }
-.svc--dark .svc__content h3 { color: rgba(255,255,255,0.92); }
-.svc--dark .svc__content h3 em { color: var(--accent-mid); }
-.svc--dark .svc__content p { color: rgba(255,255,255,0.45); }
-.svc--dark .svc__cta { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.2); }
-.svc--light {
-    background: rgba(250,250,248,0.5);
-    border-color: rgba(180,176,168,0.4);
-}
-
-.svc__num {
+.svc-row__num {
     font-family: var(--serif);
-    font-size: 0.78rem;
     font-style: italic;
     font-weight: 300;
-    color: var(--accent);
-    margin-bottom: 48px;
-    display: block;
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding-top: 2px;
 }
-
-.svc__content { flex-grow: 1; }
-.svc__content h3 {
+.svc-row__title {
     font-family: var(--serif);
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
     font-weight: 400;
     letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    color: var(--dark);
+    line-height: 1.15;
+    color: var(--text);
+    transition: color 0.25s;
 }
-.svc__content h3 em {
-    font-style: italic; font-weight: 300; color: var(--accent);
-}
-
-.svc__content p {
+.svc-row__title em { font-style: italic; font-weight: 300; color: var(--accent); }
+.svc-row__desc {
     font-size: 0.88rem;
-    line-height: 1.8;
     color: var(--muted);
-    margin-bottom: 28px;
+    line-height: 1.7;
 }
-
-.svc__tags {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 40px;
-}
-.svc__tags span {
-    font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 0.1em; padding: 4px 11px; border-radius: 50px;
-    border: 1px solid rgba(45,94,78,0.25);
-    color: var(--accent);
-    transition: all 0.25s;
-}
-.svc--dark .svc__tags span {
-    border-color: var(--border);
+.svc-row__arrow {
+    font-size: 1.1rem;
     color: var(--muted);
+    justify-self: end;
+    transition: transform 0.25s var(--ease), color 0.25s;
 }
-.svc--light .svc__tags span {
-    border-color: var(--border);
-    color: var(--muted);
-}
-
-.svc__cta {
-    margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.86rem;
-    font-weight: 500;
-    color: var(--accent);
-    border-bottom: 1px solid rgba(45,94,78,0.4);
-    padding-bottom: 2px;
-    width: fit-content;
-    transition: gap 0.3s var(--ease), opacity 0.25s;
-}
-.svc__cta:hover { gap: 14px; opacity: 0.6; }
 
 /* ═══════════════════════════════════════════════════════════════
    ARTÍCULOS — cards modernas
@@ -1049,8 +999,9 @@ body::after {
     .about__photo { aspect-ratio: 3/2; max-height: 360px; }
     .about__photo-stats { flex-direction: row; gap: 32px; }
 
-    .services__cards { grid-template-columns: 1fr; gap: 12px; padding: 0 24px 60px; }
-    .svc { min-height: auto; }
+    .svc-list { padding: 0 24px 60px; }
+    .svc-row { grid-template-columns: 40px 1fr 32px; gap: 20px; }
+    .svc-row__desc { display: none; }
     .exp__cards { grid-template-columns: repeat(2, 1fr); }
     .contact__center { padding: 60px 24px; }
 
@@ -1089,6 +1040,9 @@ body::after {
     .statement__inner { padding: 0 24px; }
     .statement__line, .rot-word { font-size: clamp(1.8rem, 8vw, 3rem); }
     .services .container { padding-top: 96px; }
+    .svc-row { grid-template-columns: 1fr; gap: 12px; }
+    .svc-row__num { display: none; }
+    .svc-row__desc { display: block; }
     .section-title { margin-bottom: 48px; }
 
     .form-row { grid-template-columns: 1fr; }
