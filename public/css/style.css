@@ -17,6 +17,7 @@
     --glass:      rgba(244,241,236,0.55);
     --glass-dark: rgba(14,28,22,0.82);  /* verde oscuro translúcido */
     --serif:      'Fraunces', Georgia, serif;
+    --didone:     'Cormorant Garamond', Georgia, serif;
     --sans:       'Inter', system-ui, sans-serif;
     --display:    'Manrope', 'Inter', system-ui, sans-serif;
     --ease:       cubic-bezier(0.4, 0, 0.2, 1);
@@ -119,7 +120,7 @@ body::after {
     max-width: 1200px; margin: 0 auto; padding: 0 48px;
     display: flex; align-items: center; justify-content: space-between;
 }
-.nav__logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; }
+.nav__logo { font-family: var(--didone); font-size: 1.25rem; font-weight: 400; letter-spacing: 0.01em; }
 .nav__links { display: flex; align-items: center; gap: 32px; }
 .nav__links a { font-size: 0.86rem; color: var(--muted); transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
@@ -128,15 +129,15 @@ body::after {
 .nav__toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO — texto + funnel visual
+   HERO — editorial, nombre protagonista
 ═══════════════════════════════════════════════════════════════ */
 .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 120px;
-    padding-bottom: 72px;
+    padding-top: 100px;
+    padding-bottom: 40px;
     position: relative;
     overflow: hidden;
 }
@@ -148,160 +149,39 @@ body::after {
 }
 .hero__eyebrow {
     font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 0.2em; color: var(--muted); margin-bottom: 28px;
+    letter-spacing: 0.2em; color: var(--muted); margin-bottom: 36px;
     opacity: 0; animation: fadeIn 0.8s 0.2s var(--ease-out) forwards;
 }
-.hero__title {
-    font-family: var(--serif);
-    font-size: clamp(3.8rem, 9vw, 8rem);
-    font-weight: 400; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 56px;
+/* Nombre en Cormorant Garamond */
+.hero__name {
+    font-family: var(--didone);
+    font-size: clamp(5rem, 11.5vw, 10.5rem);
+    font-weight: 300;
+    line-height: 0.93;
+    letter-spacing: -0.02em;
+    margin-bottom: 44px;
 }
 .hero__line { display: block; overflow: visible; padding-bottom: 0.08em; }
-.hero__line em { font-style: italic; font-weight: 300; color: var(--accent); }
+.hero__line--italic .word { font-style: italic; }
 .word {
     display: inline-block; opacity: 0; transform: translateY(105%);
     animation: wordUp 0.95s var(--ease-out) forwards;
 }
 .hero__line:nth-child(1) .word { animation-delay: 0.3s; }
-.hero__line:nth-child(2) .word { animation-delay: 0.45s; }
-.hero__line:nth-child(3) .word:nth-child(1) { animation-delay: 0.6s; }
-.hero__line:nth-child(3) .word:nth-child(2) { animation-delay: 0.65s; }
-.hero__dot { color: var(--accent); }
+.hero__line:nth-child(2) .word { animation-delay: 0.5s; }
+/* Línea divisoria */
+.hero__rule-line {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeIn 0.6s 0.85s var(--ease-out) forwards;
+}
 .hero__bottom {
-    display: flex; align-items: flex-end; justify-content: flex-end; gap: 24px;
-    opacity: 0; animation: fadeIn 0.8s 0.9s var(--ease-out) forwards;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    opacity: 0; animation: fadeIn 0.8s 0.95s var(--ease-out) forwards;
 }
-.hero__sub { font-size: 1rem; color: var(--muted); line-height: 1.65; max-width: 260px; }
-
-/* ── FUNNEL VISUAL ───────────────────────────────────────────── */
-.hero__funnel {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    opacity: 0;
-    animation: fadeIn 1s 0.8s var(--ease-out) forwards;
-    padding-bottom: 8px;
-}
-.funnel__stage {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 24px;
-    border-radius: 6px;
-    transition: transform 0.3s var(--ease);
-    position: relative;
-}
-.funnel__stage:hover { transform: scaleX(1.02); }
-.funnel__stage--1 {
-    background: var(--accent);
-    margin-left: 0%;      /* ancho completo */
-    margin-right: 0%;
-}
-.funnel__stage--2 {
-    background: var(--accent-mid);
-    margin-left: 6%;
-    margin-right: 6%;
-    margin-top: 3px;
-}
-.funnel__stage--3 {
-    background: var(--accent-lt);
-    margin-left: 14%;
-    margin-right: 14%;
-    margin-top: 3px;
-}
-.funnel__label {
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-style: italic;
-    font-weight: 300;
-    color: #fff;
-    letter-spacing: -0.01em;
-}
-.funnel__stage--3 .funnel__label { color: var(--accent); }
-.funnel__metric {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.55);
-}
-.funnel__stage--3 .funnel__metric { color: var(--accent-mid); }
-.funnel__arrow {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1;
-    padding: 2px 0;
-}
-
-/* ── FLOATING METRIC WIDGETS ─────────────────────────────────── */
-.hm {
-    position: absolute;
-    background: rgba(247,245,240,0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 14px 18px;
-    pointer-events: none;
-}
-
-/* ROAS card — esquina inferior izquierda */
-.hm--roas {
-    bottom: 120px;
-    left: 48px;
-    min-width: 130px;
-    opacity: 0;
-    animation: fadeIn 0.8s 1.4s var(--ease-out) forwards, floatA 5s 2.2s ease-in-out infinite;
-}
-.hm__top {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 4px;
-}
-.hm__label {
-    font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.16em; color: var(--muted);
-}
-.hm__badge {
-    font-size: 0.68rem; color: #22c55e; font-weight: 700;
-    background: rgba(34,197,94,0.1); border-radius: 4px; padding: 1px 5px;
-}
-.hm__value {
-    display: block;
-    font-family: var(--sans); font-size: 1.8rem; font-weight: 700;
-    letter-spacing: -0.04em; color: var(--text); line-height: 1;
-    margin-bottom: 10px;
-}
-.hm__value em { font-style: normal; font-size: 1.1rem; font-weight: 400; color: var(--muted); }
-.hm__spark { width: 100%; height: 24px; color: var(--accent); display: block; }
-
-/* Badge conversiones — lateral derecho, arriba */
-.hm--ctr {
-    top: 38%;
-    right: 180px;
-    display: flex; align-items: center; gap: 8px;
-    white-space: nowrap;
-    opacity: 0;
-    animation: fadeIn 0.8s 1.8s var(--ease-out) forwards, floatB 6s 2.8s ease-in-out infinite;
-}
-.hm__icon { font-size: 0.9rem; }
-.hm__ctr-text {
-    font-size: 0.8rem; color: var(--muted);
-}
-.hm__ctr-text strong { color: var(--accent); font-weight: 600; }
-
-/* ── FUNNEL DECO (dashed SVG) ────────────────────────────────── */
-.hero__funnel-deco {
-    position: absolute;
-    right: 120px;
-    bottom: 72px;
-    width: 180px;
-    height: 290px;
-    color: var(--accent);
-    opacity: 0;
-    animation: fadeIn 1.2s 1s var(--ease-out) forwards, funnelFloat 5s 2.2s ease-in-out infinite;
-    pointer-events: none;
-}
+.hero__sub { font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
 
 /* Scroll indicator */
 .hero__scroll {
@@ -326,7 +206,7 @@ body::after {
 /* ═══════════════════════════════════════════════════════════════
    SOBRE MÍ
 ═══════════════════════════════════════════════════════════════ */
-.about { padding: 140px 0 60px; border-top: none; background: transparent; }
+.about { padding: 80px 0 60px; border-top: none; background: transparent; }
 .about__grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
@@ -334,12 +214,12 @@ body::after {
 }
 .about__content h2,
 .about__name {
-    font-family: var(--display);
-    font-size: clamp(2rem, 3.2vw, 2.9rem);
-    font-weight: 200;
+    font-family: var(--didone);
+    font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+    font-weight: 300;
     font-style: normal;
     line-height: 1.05;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     margin-bottom: 36px;
     color: var(--text);
 }
@@ -825,10 +705,11 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: none;
-    background: var(--glass-dark);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(14,28,22,0.58);
+    backdrop-filter: blur(48px);
+    -webkit-backdrop-filter: blur(48px);
     position: relative;
     overflow: hidden;
 }
@@ -991,7 +872,7 @@ body::after {
    RESPONSIVE — TABLET (≤ 960px)
 ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 960px) {
-    .hero__funnel-deco { display: none; }
+    .hero__name { font-size: clamp(3.8rem, 10vw, 7rem); }
     .hm { display: none; }
 
     .about__grid { grid-template-columns: 1fr; gap: 56px; }
@@ -1032,6 +913,7 @@ body::after {
     .nav__links a { padding: 14px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
     .nav__links a:last-child { border-bottom: none; }
 
+    .hero__name { font-size: clamp(3rem, 13vw, 5rem); }
     .hero__bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
     .hero__scroll { right: 24px; }
 
