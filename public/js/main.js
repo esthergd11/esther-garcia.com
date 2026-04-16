@@ -178,6 +178,43 @@ function updateProgress() {
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
+/* ── CURSOR PERSONALIZADO ────────────────────────────────────── */
+(function () {
+    const cursor = document.querySelector('.cursor');
+    if (!cursor || !window.matchMedia('(pointer: fine)').matches) return;
+
+    const dot  = cursor.querySelector('.cursor__dot');
+    const ring = cursor.querySelector('.cursor__ring');
+
+    let mx = -100, my = -100; // posición del ratón
+    let rx = -100, ry = -100; // posición del ring (lerp)
+
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    });
+
+    // Ring sigue con lerp suave
+    (function animRing() {
+        rx += (mx - rx) * 0.11;
+        ry += (my - ry) * 0.11;
+        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+        requestAnimationFrame(animRing);
+    })();
+
+    // Efecto hover en elementos interactivos
+    const interactives = 'a, button, [role="button"], input, textarea, label, .svc-row, .exp__card';
+    document.querySelectorAll(interactives).forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));
+    });
+
+    document.addEventListener('mousedown', () => cursor.classList.add('cursor--click'));
+    document.addEventListener('mouseup',   () => cursor.classList.remove('cursor--click'));
+
+    document.addEventListener('mouseleave', () => { mx = -200; my = -200; });
+})();
+
 /* ── FORMULARIO ──────────────────────────────────────────────── */
 const form    = document.getElementById('contactForm');
 const success = document.getElementById('formSuccess');

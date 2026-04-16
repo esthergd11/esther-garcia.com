@@ -120,13 +120,20 @@ body::after {
     max-width: 1200px; margin: 0 auto; padding: 0 48px;
     display: flex; align-items: center; justify-content: space-between;
 }
-.nav__logo { font-family: var(--didone); font-size: 1.25rem; font-weight: 400; letter-spacing: 0.01em; }
+.nav__logo { font-family: var(--didone); font-size: 1.25rem; font-weight: 400; letter-spacing: 0.01em; transition: color 0.4s; }
 .nav__links { display: flex; align-items: center; gap: 32px; }
 .nav__links a { font-size: 0.86rem; color: var(--muted); transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
 .nav__cta { color: var(--text) !important; font-weight: 500 !important; border-bottom: 1px solid var(--text); padding-bottom: 1px; }
 .nav__toggle { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav__toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+/* Nav sobre hero oscuro — texto blanco */
+.nav:not(.scrolled) .nav__logo          { color: rgba(255,255,255,0.88); }
+.nav:not(.scrolled) .nav__links a       { color: rgba(255,255,255,0.50); }
+.nav:not(.scrolled) .nav__links a:hover { color: #fff; }
+.nav:not(.scrolled) .nav__cta           { color: #fff !important; border-color: rgba(255,255,255,0.45); }
+.nav:not(.scrolled) .nav__toggle span   { background: rgba(255,255,255,0.85); }
 
 /* ═══════════════════════════════════════════════════════════════
    HERO — texto principal
@@ -146,6 +153,8 @@ body::after {
     margin: 0 auto;
     padding: 0 48px;
     width: 100%;
+    position: relative;
+    z-index: 3;
 }
 .hero__eyebrow {
     font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
@@ -174,23 +183,79 @@ body::after {
 }
 .hero__sub { font-size: 1rem; color: var(--muted); line-height: 1.65; max-width: 260px; }
 
+/* ── CAPAS DE FONDO DEL HERO ─────────────────────────────────── */
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+/* Gradiente animado — visible cuando no hay vídeo */
+.hero__bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 130% 90% at 12% 65%, rgba(24,58,42,1) 0%, transparent 52%),
+        radial-gradient(ellipse 90% 80% at 82% 18%, rgba(10,28,20,0.95) 0%, transparent 48%),
+        radial-gradient(ellipse 70% 65% at 48% 92%, rgba(4,14,9,1) 0%, transparent 55%),
+        #040c06;
+    animation: heroBgPulse 9s ease-in-out infinite alternate;
+    z-index: 0;
+}
+@keyframes heroBgPulse {
+    from { filter: brightness(1); }
+    to   { filter: brightness(1.15); }
+}
+.hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+/* Overlay semitransparente sobre el vídeo */
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(3,10,6,0.60);
+    z-index: 2;
+}
+/* Fundido al beige de la sección siguiente */
+.hero__fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* ── TEXTOS DEL HERO SOBRE FONDO OSCURO ─────────────────────── */
+.hero .hero__eyebrow { color: rgba(255,255,255,0.42); }
+.hero__title         { color: rgba(255,255,255,0.92); }
+.hero .hero__line em { color: #7ecfaa; }
+.hero .hero__dot     { color: #7ecfaa; }
+.hero .link-arrow    { color: rgba(255,255,255,0.80); }
+.hero .link-arrow:hover { color: #fff; }
+
 /* Scroll indicator */
 .hero__scroll {
-    position: absolute; bottom: 36px; right: 48px;
+    position: absolute; bottom: 56px; right: 48px;
     display: flex; flex-direction: column; align-items: center; gap: 10px;
     opacity: 0; animation: fadeIn 1s 1.3s var(--ease-out) forwards;
+    z-index: 3;
 }
 .hero__scroll span {
     font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.18em;
-    color: var(--muted); writing-mode: vertical-rl;
+    color: rgba(255,255,255,0.35); writing-mode: vertical-rl;
 }
 .hero__scroll-line {
-    width: 1px; height: 56px; background: var(--border);
+    width: 1px; height: 56px; background: rgba(255,255,255,0.15);
     position: relative; overflow: hidden;
 }
 .hero__scroll-line::after {
     content: ''; position: absolute; top: -100%; left: 0;
-    width: 100%; height: 100%; background: var(--accent-mid);
+    width: 100%; height: 100%; background: rgba(255,255,255,0.55);
     animation: scrollLine 2.2s 1.6s var(--ease-out) infinite;
 }
 
@@ -845,6 +910,39 @@ body::after {
 }
 /* En la sección oscura (experiencia/contacto) los dots también se ven */
 .pp__dot.active-dark { background: var(--accent-mid); }
+
+/* ═══════════════════════════════════════════════════════════════
+   CURSOR PERSONALIZADO
+═══════════════════════════════════════════════════════════════ */
+@media (pointer: fine) {
+    body, a, button { cursor: none; }
+}
+.cursor {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+.cursor__dot {
+    position: absolute;
+    width: 5px; height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+.cursor__ring {
+    position: absolute;
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.35s var(--ease), height 0.35s var(--ease), opacity 0.35s;
+    will-change: transform;
+}
+.cursor--hover .cursor__ring  { width: 60px; height: 60px; opacity: 0.5; }
+.cursor--click .cursor__dot   { width: 8px; height: 8px; }
 
 /* ═══════════════════════════════════════════════════════════════
    FOOTER
