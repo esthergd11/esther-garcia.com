@@ -12,33 +12,51 @@
 </head>
 <body>
 
-    <!-- NAV -->
+    <!-- Orbes flotantes de fondo (estilo marimba) -->
+    <div class="orbs" aria-hidden="true">
+        <div class="orb orb--coral"></div>
+        <div class="orb orb--lavender"></div>
+        <div class="orb orb--mint"></div>
+        <div class="orb orb--sky"></div>
+    </div>
+
+    <!-- NAV — 3 columnas: logo · descriptores · links apilados -->
     <header class="nav" id="nav">
         <div class="nav__inner">
-            <a href="#inicio" class="nav__logo">Esther García</a>
+            <a href="#inicio" class="nav__logo">Esther<br>García.</a>
+            <div class="nav__meta">
+                <span>PPC · SEM · Paid Media</span>
+                <span>Valencia · España</span>
+            </div>
+            <nav class="nav__links" id="navLinks">
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#experiencia">Experiencia</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
             <button class="nav__toggle" id="navToggle" aria-label="Menú">
                 <span></span><span></span>
             </button>
-            <nav class="nav__links" id="navLinks">
-                <a href="#sobre-mi">Sobre mí</a>
-                <a href="#experiencia">Experiencia</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#articulos">Blog</a>
-                <a href="#contacto" class="nav__cta">Hablamos →</a>
-            </nav>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero" id="inicio">
+
+        <!-- Formas decorativas flotantes -->
+        <div class="hero__deco" aria-hidden="true">
+            <svg class="deco-star deco-star--1" viewBox="0 0 40 40" fill="none"><line x1="20" y1="1" x2="20" y2="39" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="20" x2="39" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="34" y2="34" stroke="currentColor" stroke-width="1.5"/><line x1="34" y1="6" x2="6" y2="34" stroke="currentColor" stroke-width="1.5"/></svg>
+            <svg class="deco-star deco-star--2" viewBox="0 0 40 40" fill="none"><line x1="20" y1="1" x2="20" y2="39" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="20" x2="39" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="34" y2="34" stroke="currentColor" stroke-width="1.5"/><line x1="34" y1="6" x2="6" y2="34" stroke="currentColor" stroke-width="1.5"/></svg>
+            <div class="deco-circle"></div>
+        </div>
+
         <div class="hero__inner">
             <div class="hero__text">
-                <!-- Intro pequeña: dos tipografías, tamaño discreto -->
+                <span class="hero__badge">PPC · SEM · Paid Media</span>
                 <p class="hero__intro">
                     <span class="hero__intro-hello">Hola, soy</span>
                     <em class="hero__intro-name">Esther García,</em>
                 </p>
-                <!-- Claim grande: Fraunces, llena la pantalla -->
                 <h1 class="hero__title">
                     <span class="hero__line"><span class="word">especialista en</span></span>
                     <span class="hero__line"><em><span class="word">marketing digital</span><span class="hero__dot">.</span></em></span>
