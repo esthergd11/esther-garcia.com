@@ -217,31 +217,9 @@ updateProgress();
 
 /* ── FORMULARIO ──────────────────────────────────────────────── */
 const form    = document.getElementById('contactForm');
-const success = document.getElementById('formSuccess');
-
-form?.addEventListener('submit', async e => {
-    e.preventDefault();
-    const btn  = form.querySelector('.btn-submit');
-    const orig = btn.innerHTML;
+form?.addEventListener('submit', () => {
+    const btn = form.querySelector('.btn-submit');
+    if (!btn) return;
     btn.innerHTML = 'Enviando… →';
-    btn.disabled  = true;
-    try {
-        const res = await fetch(form.action, {
-            method:  'POST',
-            body:    new FormData(form),
-            headers: { Accept: 'application/json' }
-        });
-        if (res.ok) {
-            form.reset();
-            success?.classList.remove('hidden');
-            setTimeout(() => success?.classList.add('hidden'), 6000);
-        } else {
-            alert('Algo salió mal. Inténtalo de nuevo.');
-        }
-    } catch {
-        alert('Error de conexión. Inténtalo de nuevo.');
-    } finally {
-        btn.innerHTML = orig;
-        btn.disabled  = false;
-    }
+    btn.disabled = true;
 });
