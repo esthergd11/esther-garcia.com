@@ -217,7 +217,19 @@ updateProgress();
 
 /* ── FORMULARIO ──────────────────────────────────────────────── */
 const form    = document.getElementById('contactForm');
-form?.addEventListener('submit', () => {
+const formLoadedAtInput = document.getElementById('formLoadedAt');
+const formLoadedAt = Date.now();
+
+if (formLoadedAtInput) formLoadedAtInput.value = String(formLoadedAt);
+
+form?.addEventListener('submit', (e) => {
+    const elapsedMs = Date.now() - formLoadedAt;
+    // Basic bot friction: reject submissions sent too quickly.
+    if (elapsedMs < 4000) {
+        e.preventDefault();
+        alert('Espera unos segundos y vuelve a intentarlo.');
+        return;
+    }
     const btn = form.querySelector('.btn-submit');
     if (!btn) return;
     btn.innerHTML = 'Enviando… →';
