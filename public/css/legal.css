@@ -4,7 +4,7 @@
 :root{
     --bg:#EDE9DC; --text:#1E3008; --muted:#5C6B3C; --accent:#2D5E4E;
     --border:rgba(30,48,8,0.13);
-    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Karla',system-ui,sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{

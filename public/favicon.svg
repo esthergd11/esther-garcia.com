@@ -5,9 +5,10 @@
     y="54%"
     text-anchor="middle"
     dominant-baseline="middle"
-    font-size="60"
-    font-weight="700"
-    font-family="MADE Sunflower, Made Sunflower, Inter, Arial, sans-serif"
+    font-size="58"
+    font-weight="600"
+    font-style="italic"
+    font-family="Georgia, 'Times New Roman', serif"
     fill="#2D5E4E"
   >
     e

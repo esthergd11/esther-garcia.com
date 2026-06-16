@@ -15,11 +15,11 @@
     --accent-mid: #5EAD8A;
     --accent-lt:  #D6E4DC;
     --glass:      rgba(244,241,236,0.55);
-    --glass-dark: rgba(14,28,22,0.82);  /* verde oscuro translúcido */
-    --serif:      'Fraunces', Georgia, serif;
+    --glass-dark: #0E1C16;  /* verde oscuro sólido */
+    --serif:      'Cormorant Garamond', Georgia, serif;
     --didone:     'Cormorant Garamond', Georgia, serif;
-    --sans:       'Inter', system-ui, sans-serif;
-    --display:    'Manrope', 'Inter', system-ui, sans-serif;
+    --sans:       'Karla', system-ui, sans-serif;
+    --display:    'Karla', system-ui, sans-serif;
     --ease:       cubic-bezier(0.4, 0, 0.2, 1);
     --ease-out:   cubic-bezier(0, 0, 0.2, 1);
 }
@@ -107,9 +107,7 @@ body::after {
     transition: background 0.45s, padding 0.45s, border-color 0.45s;
 }
 .nav.scrolled {
-    background: rgba(237,233,220,0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--bg);
     padding: 16px 0;
     border-bottom: 1px solid var(--border-s);
 }
@@ -160,7 +158,7 @@ body::after {
 }
 .nav__links a:hover        { color: var(--text); }
 .nav__links a.nav__active::before { content: '· '; color: var(--accent); }
-.nav__toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 4px; }
+.nav__toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav__toggle span { display: block; width: 20px; height: 1.5px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -184,7 +182,7 @@ body::after {
     position: relative;
     z-index: 2;
 }
-/* Intro pequeña: Manrope + Cormorant mezclados */
+/* Intro pequeña: Karla + Cormorant mezclados */
 .hero__intro {
     display: flex;
     align-items: baseline;
@@ -196,7 +194,7 @@ body::after {
     line-height: 1.3;
 }
 .hero__intro-hello {
-    font-family: var(--display);   /* Manrope */
+    font-family: var(--display);   /* Karla */
     font-size: clamp(1rem, 1.8vw, 1.7rem);
     font-weight: 300;
     color: var(--muted);
@@ -211,7 +209,7 @@ body::after {
     letter-spacing: 0.01em;
 }
 
-/* Claim grande: Fraunces, llena la pantalla */
+/* Claim grande: Cormorant, llena la pantalla */
 .hero__title {
     font-family: var(--serif);
     font-size: clamp(5.5rem, 14vw, 13rem);
@@ -326,8 +324,6 @@ body::after {
     padding: 72px 0;
     margin-top: 40px;
     background: var(--glass-dark);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
 }
 .experience .section-label { color: rgba(255,255,255,0.35); }
 .experience .section-title { color: #fff; margin-bottom: 40px; }
@@ -413,9 +409,7 @@ body::after {
 .exp__overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0,0,0,0.72);
     z-index: 200;
     display: flex;
     align-items: center;
@@ -508,7 +502,7 @@ body::after {
 
 .statement__line {
     display: block;
-    font-family: 'Manrope', var(--sans);
+    font-family: var(--display);
     font-size: clamp(3.2rem, 8vw, 8rem);
     font-weight: 200;
     line-height: 1.0;
@@ -546,7 +540,7 @@ body::after {
     position: absolute;
     right: 0;
     bottom: 0;
-    font-family: 'Manrope', var(--sans);
+    font-family: var(--display);
     font-size: clamp(3.2rem, 8vw, 8rem);
     font-weight: 800;
     letter-spacing: -0.04em;
@@ -568,7 +562,7 @@ body::after {
 
 .statement__dot {
     color: var(--accent);
-    font-family: 'Manrope', var(--sans);
+    font-family: var(--display);
     font-weight: 800;
     flex-shrink: 0;
 }
@@ -581,9 +575,7 @@ body::after {
     border-top: 1px solid var(--border-s);
     border-bottom: 1px solid var(--border-s);
     padding: 13px 0;
-    background: rgba(244,241,236,0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: var(--bg);
     cursor: default;
 }
 .ticker__track {
@@ -606,9 +598,9 @@ body::after {
 .ticker__track span:hover { color: var(--accent); }
 .ticker__track em {
     font-style: normal;
-    font-size: 0.45rem;
-    color: var(--accent);
-    opacity: 0.7;
+    font-size: 0.9rem;
+    color: var(--muted);
+    opacity: 0.45;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -698,9 +690,7 @@ body::after {
 }
 
 .article-card {
-    background: rgba(250,250,248,0.6);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: #FAFAF8;
     border: 1px solid rgba(255,255,255,0.7);
     border-top: 3px solid var(--accent);
     border-radius: 12px;
@@ -921,102 +911,9 @@ body::after {
 .pp__dot.active-dark { background: var(--accent-mid); }
 
 /* ═══════════════════════════════════════════════════════════════
-   ORBES FLOTANTES DE COLOR (fondo tipo marimba)
-═══════════════════════════════════════════════════════════════ */
-.orbs {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-}
-.orb--coral    { width: 700px; height: 700px; background: radial-gradient(circle, rgba(240,150,110,0.42) 0%, transparent 68%); top: -180px; left: -120px; }
-.orb--lavender { width: 550px; height: 550px; background: radial-gradient(circle, rgba(180,155,220,0.38) 0%, transparent 68%); top: 15%; right: -80px; }
-.orb--mint     { width: 480px; height: 480px; background: radial-gradient(circle, rgba(130,200,165,0.32) 0%, transparent 68%); bottom: 28%; left: 18%; }
-.orb--sky      { width: 420px; height: 420px; background: radial-gradient(circle, rgba(140,190,230,0.30) 0%, transparent 68%); bottom: -80px; right: 15%; }
-
-/* ── HERO: badge + formas decorativas ───────────────────────── */
-.hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.68rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    padding: 6px 16px;
-    margin-bottom: 28px;
-}
-.hero__deco {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-}
-/* Asterisco estilo marimba */
-.deco-star {
-    position: absolute;
-    color: var(--muted);
-    opacity: 0.45;
-}
-.deco-star--1 { width: 44px; height: 44px; top: 22%; right: 12%; opacity: 0.35; animation: decoSpin 18s linear infinite; }
-.deco-star--2 { width: 28px; height: 28px; bottom: 30%; left: 8%;  opacity: 0.28; animation: decoSpin 28s linear infinite reverse; }
-.deco-circle  {
-    position: absolute;
-    width: 120px; height: 120px;
-    border: 1px solid rgba(30,48,8,0.12);
-    border-radius: 50%;
-    bottom: 18%; right: 22%;
-    animation: decoFloat 6s ease-in-out infinite;
-}
-@keyframes decoSpin  { to { transform: rotate(360deg); } }
-@keyframes decoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
-/* ═══════════════════════════════════════════════════════════════
-   CURSOR PERSONALIZADO
-═══════════════════════════════════════════════════════════════ */
-@media (pointer: fine) {
-    body, a, button { cursor: none; }
-}
-.cursor {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-}
-.cursor__dot {
-    position: absolute;
-    width: 5px; height: 5px;
-    background: #fff;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    will-change: transform;
-}
-.cursor__ring {
-    position: absolute;
-    width: 34px; height: 34px;
-    border: 1px solid rgba(255,255,255,0.65);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.35s var(--ease), height 0.35s var(--ease), opacity 0.35s;
-    will-change: transform;
-}
-.cursor--hover .cursor__ring  { width: 60px; height: 60px; opacity: 0.5; }
-.cursor--click .cursor__dot   { width: 8px; height: 8px; }
-
-/* ═══════════════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════════════ */
-.footer { background: var(--glass-dark); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 0; }
+.footer { background: var(--glass-dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 0; }
 .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .footer__links { display: flex; align-items: center; gap: 22px; }
 .footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
@@ -1108,9 +1005,63 @@ body::after {
     /* Muestra el contenido sin animación de entrada */
     .reveal, .js .reveal { opacity: 1 !important; transform: none !important; }
     /* Detiene los elementos decorativos en bucle */
-    .orb, .ticker__track, .rot-word, .deco-star, .deco-circle { animation: none !important; }
+    .ticker__track, .rot-word { animation: none !important; }
     .hero__scroll-line::after, .hero__intro, .hero__bottom, .hero__scroll, .word { animation: none !important; opacity: 1 !important; transform: none !important; }
-    /* Restaura el cursor del sistema y oculta el personalizado */
-    .cursor { display: none !important; }
-    body, a, button { cursor: auto !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MARCAS / LOGOS (wordmarks tipográficos)
+═══════════════════════════════════════════════════════════════ */
+.brands { padding: 16px 0 8px; }
+.brands__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 20px 52px;
+    padding-top: 6px;
+}
+.brand {
+    font-family: var(--didone);
+    font-size: clamp(1.25rem, 2.2vw, 1.9rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    opacity: 0.5;
+    transition: opacity 0.25s;
+}
+.brand:hover { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════════
+   COMENTARIOS / TESTIMONIOS
+═══════════════════════════════════════════════════════════════ */
+.reviews { padding: 60px 0 40px; }
+.reviews__list {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+    max-width: 880px;
+}
+.review { margin: 0; }
+.review__quote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 0 0 18px;
+    text-indent: -0.4em;
+}
+.review__quote::before { content: '“'; color: var(--accent); }
+.review__quote::after  { content: '”'; color: var(--accent); }
+.review__author { display: flex; flex-direction: column; gap: 2px; }
+.review__name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+}
+.review__role {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
 }
