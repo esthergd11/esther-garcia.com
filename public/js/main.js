@@ -2,6 +2,9 @@
    ESTHER GARCÍA — PORTFOLIO · main.js
    ============================================================ */
 
+/* ── PREFERENCIA DE MOVIMIENTO ──────────────────────────────── */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ── AÑO FOOTER ─────────────────────────────────────────────── */
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -45,34 +48,6 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-/* ── FUNNEL PROGRESS TRACKER ─────────────────────────────────── */
-const funnelFill  = document.getElementById('funnelFill');
-const funnelNodes = document.querySelectorAll('.funnel-node');
-
-// Secciones que representan etapas del funnel
-const funnelSections = ['#inicio', '#sobre-mi', '#servicios', '#contacto'].map(s =>
-    document.querySelector(s)
-).filter(Boolean);
-
-function updateFunnel() {
-    const scrolled  = window.scrollY;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress  = Math.min(scrolled / maxScroll, 1);
-
-    if (funnelFill) funnelFill.style.height = `${progress * 100}%`;
-
-    // Activa cada nodo según la sección visible
-    funnelSections.forEach((section, i) => {
-        const rect = section.getBoundingClientRect();
-        const node = funnelNodes[i];
-        if (!node) return;
-        node.classList.toggle('active', rect.top < window.innerHeight * 0.6);
-    });
-}
-
-window.addEventListener('scroll', updateFunnel, { passive: true });
-updateFunnel();
-
 /* ── PALABRA ROTATORIA (STATEMENT) ──────────────────────────── */
 const rotWords   = document.querySelectorAll('.rot-word');
 const rotContainer = document.querySelector('.statement__rotate');
@@ -89,15 +64,18 @@ if (rotWords.length) {
     // Ajuste inicial tras cargar fuentes
     document.fonts.ready.then(setRotWidth);
 
-    setInterval(() => {
-        rotWords[rotIdx].classList.remove('active');
-        rotWords[rotIdx].classList.add('exit');
-        const prev = rotIdx;
-        rotIdx = (rotIdx + 1) % rotWords.length;
-        rotWords[rotIdx].classList.add('active');
-        setRotWidth();
-        setTimeout(() => rotWords[prev].classList.remove('exit'), 500);
-    }, 2400);
+    // Solo rota si el usuario no ha pedido reducir el movimiento
+    if (!reduceMotion) {
+        setInterval(() => {
+            rotWords[rotIdx].classList.remove('active');
+            rotWords[rotIdx].classList.add('exit');
+            const prev = rotIdx;
+            rotIdx = (rotIdx + 1) % rotWords.length;
+            rotWords[rotIdx].classList.add('active');
+            setRotWidth();
+            setTimeout(() => rotWords[prev].classList.remove('exit'), 500);
+        }, 2400);
+    }
 }
 
 /* ── POPUP EXPERIENCIA ───────────────────────────────────────── */
@@ -134,30 +112,49 @@ const expData = [
 
 const expOverlay = document.getElementById('expOverlay');
 const expClose   = document.getElementById('expClose');
+let expLastFocused = null;
+
+function openExpModal(idx) {
+    const data = expData[idx];
+    if (!data) return;
+    document.getElementById('mNum').textContent     = data.num;
+    document.getElementById('mCompany').textContent = data.company;
+    document.getElementById('mRole').textContent    = data.role;
+    document.getElementById('mDesc').textContent    = data.desc;
+    document.getElementById('mTags').innerHTML      = data.tags.map(t => `<span>${t}</span>`).join('');
+    expLastFocused = document.activeElement;          // recordar para devolver el foco
+    expOverlay.classList.add('open');
+    expOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    expClose?.focus();                                 // llevar el foco al modal
+}
 
 document.querySelectorAll('.exp__card').forEach(card => {
-    card.addEventListener('click', () => {
-        const idx  = parseInt(card.dataset.exp);
-        const data = expData[idx];
-        document.getElementById('mNum').textContent     = data.num;
-        document.getElementById('mCompany').textContent = data.company;
-        document.getElementById('mRole').textContent    = data.role;
-        document.getElementById('mDesc').textContent    = data.desc;
-        document.getElementById('mTags').innerHTML      = data.tags.map(t => `<span>${t}</span>`).join('');
-        expOverlay.classList.add('open');
-        expOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    });
+    const open = () => openExpModal(parseInt(card.dataset.exp));
+    // El botón "→" es el control accesible: focusable y con Enter/Espacio nativos
+    const btn = card.querySelector('.exp__card-btn');
+    btn?.addEventListener('click', e => { e.stopPropagation(); open(); });
+    // Click en cualquier punto de la tarjeta (comodidad con ratón)
+    card.addEventListener('click', open);
 });
 
 function closeExpModal() {
+    if (!expOverlay.classList.contains('open')) return;
     expOverlay.classList.remove('open');
     expOverlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    expLastFocused?.focus();                           // devolver el foco a la tarjeta
 }
 expClose?.addEventListener('click', closeExpModal);
 expOverlay?.addEventListener('click', e => { if (e.target === expOverlay) closeExpModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExpModal(); });
+// Focus trap: mantener el foco dentro del modal (único control: cerrar)
+expOverlay?.addEventListener('keydown', e => {
+    if (e.key === 'Tab' && expOverlay.classList.contains('open')) {
+        e.preventDefault();
+        expClose?.focus();
+    }
+});
 
 /* ── INDICADOR LATERAL DE PROGRESO ──────────────────────────── */
 const ppDots    = document.querySelectorAll('.pp__dot');
@@ -181,7 +178,7 @@ updateProgress();
 /* ── CURSOR PERSONALIZADO ────────────────────────────────────── */
 (function () {
     const cursor = document.querySelector('.cursor');
-    if (!cursor || !window.matchMedia('(pointer: fine)').matches) return;
+    if (!cursor || !window.matchMedia('(pointer: fine)').matches || reduceMotion) return;
 
     const dot  = cursor.querySelector('.cursor__dot');
     const ring = cursor.querySelector('.cursor__ring');

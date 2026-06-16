@@ -1,0 +1,59 @@
+/* ============================================================
+   ESTHER GARCÍA — Páginas legales (aviso legal / privacidad)
+   ============================================================ */
+:root{
+    --bg:#EDE9DC; --text:#1E3008; --muted:#5C6B3C; --accent:#2D5E4E;
+    --border:rgba(30,48,8,0.13);
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:var(--sans); background:var(--bg); color:var(--text);
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+a:hover{opacity:0.7;}
+
+.legal-nav{
+    max-width:760px; margin:0 auto; padding:32px 32px 0;
+    display:flex; justify-content:space-between; align-items:baseline;
+}
+.legal-nav .logo{
+    font-family:'Cormorant Garamond',Georgia,serif; font-weight:700; font-size:1.05rem;
+    color:var(--text); text-decoration:none; line-height:1.1;
+}
+.legal-nav .back{font-size:0.85rem; color:var(--muted);}
+
+.legal{
+    max-width:760px; margin:0 auto; padding:40px 32px 96px;
+}
+.legal__label{
+    font-size:0.7rem; text-transform:uppercase; letter-spacing:0.2em;
+    color:var(--muted); margin-bottom:16px;
+}
+.legal h1{
+    font-family:var(--serif); font-weight:400; font-size:clamp(2.2rem,5vw,3.2rem);
+    line-height:1.1; letter-spacing:-0.02em; margin-bottom:8px;
+}
+.legal .updated{font-size:0.85rem; color:var(--muted); margin-bottom:48px;}
+.legal h2{
+    font-family:var(--serif); font-weight:400; font-size:1.4rem;
+    margin:40px 0 14px; letter-spacing:-0.01em;
+}
+.legal p, .legal li{font-size:0.96rem; color:#2c3d18; margin-bottom:14px;}
+.legal ul{padding-left:22px; margin-bottom:14px;}
+.legal li{margin-bottom:8px;}
+.legal strong{color:var(--text); font-weight:600;}
+
+/* Placeholder visible para datos pendientes de completar */
+.todo{
+    background:#fbe9c8; color:#7a5200; border:1px dashed #c89b3c;
+    padding:1px 7px; border-radius:4px; font-weight:600; font-size:0.85em;
+    white-space:nowrap;
+}
+
+.legal__foot{
+    max-width:760px; margin:0 auto; padding:32px; border-top:1px solid var(--border);
+    font-size:0.85rem; color:var(--muted);
+}
+.legal__foot a{color:var(--accent);}
