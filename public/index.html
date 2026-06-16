@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!-- design-lock
+direction: Editorial personal cálido (serif grande sobre papel) — estética propia de la clienta
+topology: editorial column — claim tipográfico grande arriba, foto grande en "Sobre mí", sin pill badge
+display-font: Cormorant Garamond | body-font: Karla
+palette: #EDE9DC papel · #1E3008 tinta · #2D5E4E acento verde — colores elegidos por Esther
+signature: statement tipográfico con palabra rotatoria "Tu presupuesto merece…" (data-signature)
+motion: 3/10 — reveals suaves, ticker, palabra rotatoria; con triple degradación (.js + failsafe 2.5s + reduced-motion)
+rejected: orbes con blur, glassmorphism, cursor personalizado, sparkles (eran defaults de IA)
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -63,20 +72,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <!-- Activa las animaciones de entrada solo si hay JS; sin JS, el contenido es visible -->
     <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-
-    <!-- Orbes flotantes de fondo (estilo marimba) -->
-    <div class="orbs" aria-hidden="true">
-        <div class="orb orb--coral"></div>
-        <div class="orb orb--lavender"></div>
-        <div class="orb orb--mint"></div>
-        <div class="orb orb--sky"></div>
-    </div>
 
     <!-- NAV — 3 columnas: logo · descriptores · links apilados -->
     <header class="nav" id="nav">
@@ -101,16 +102,8 @@
     <!-- HERO -->
     <section class="hero" id="inicio">
 
-        <!-- Formas decorativas flotantes -->
-        <div class="hero__deco" aria-hidden="true">
-            <svg class="deco-star deco-star--1" viewBox="0 0 40 40" fill="none"><line x1="20" y1="1" x2="20" y2="39" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="20" x2="39" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="34" y2="34" stroke="currentColor" stroke-width="1.5"/><line x1="34" y1="6" x2="6" y2="34" stroke="currentColor" stroke-width="1.5"/></svg>
-            <svg class="deco-star deco-star--2" viewBox="0 0 40 40" fill="none"><line x1="20" y1="1" x2="20" y2="39" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="20" x2="39" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="34" y2="34" stroke="currentColor" stroke-width="1.5"/><line x1="34" y1="6" x2="6" y2="34" stroke="currentColor" stroke-width="1.5"/></svg>
-            <div class="deco-circle"></div>
-        </div>
-
         <div class="hero__inner">
             <div class="hero__text">
-                <span class="hero__badge">PPC · SEM · Paid Media</span>
                 <p class="hero__intro">
                     <span class="hero__intro-hello">Hola, soy</span>
                     <em class="hero__intro-name">Esther García,</em>
@@ -176,18 +169,27 @@
                             <span class="stat__num">6</span>
                             <span class="stat__label">plataformas de ads</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat__num">∞</span>
-                            <span class="stat__label">ganas de enseñar</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- MARCAS / LOGOS -->
+    <section class="brands">
+        <div class="container">
+            <div class="section-label reveal">Trabajo y formo en</div>
+            <div class="brands__row reveal">
+                <span class="brand">Dark Moon Academia</span>
+                <span class="brand">agenciaSEO.eu</span>
+                <span class="brand">ESCP Europe</span>
+                <span class="brand">CrackPPC</span>
+            </div>
+        </div>
+    </section>
+
     <!-- STATEMENT -->
-    <section class="statement">
+    <section class="statement" data-signature>
         <div class="statement__inner">
             <div class="statement__block">
                 <p class="statement__line reveal">Tu presupuesto</p>
@@ -206,26 +208,26 @@
     <!-- TICKER -->
     <div class="ticker" aria-hidden="true">
         <div class="ticker__track">
-            <span>Google Ads</span><em>✦</em>
-            <span>TikTok Ads</span><em>✦</em>
-            <span>Meta Ads</span><em>✦</em>
-            <span>Performance</span><em>✦</em>
-            <span>PMax</span><em>✦</em>
-            <span>Demand Gen</span><em>✦</em>
-            <span>ROAS</span><em>✦</em>
-            <span>LinkedIn Ads</span><em>✦</em>
-            <span>Spotify Ads</span><em>✦</em>
-            <span>Looker Studio</span><em>✦</em>
-            <span>Google Ads</span><em>✦</em>
-            <span>TikTok Ads</span><em>✦</em>
-            <span>Meta Ads</span><em>✦</em>
-            <span>Performance</span><em>✦</em>
-            <span>PMax</span><em>✦</em>
-            <span>Demand Gen</span><em>✦</em>
-            <span>ROAS</span><em>✦</em>
-            <span>LinkedIn Ads</span><em>✦</em>
-            <span>Spotify Ads</span><em>✦</em>
-            <span>Looker Studio</span><em>✦</em>
+            <span>Google Ads</span><em>·</em>
+            <span>TikTok Ads</span><em>·</em>
+            <span>Meta Ads</span><em>·</em>
+            <span>Performance</span><em>·</em>
+            <span>PMax</span><em>·</em>
+            <span>Demand Gen</span><em>·</em>
+            <span>ROAS</span><em>·</em>
+            <span>LinkedIn Ads</span><em>·</em>
+            <span>Spotify Ads</span><em>·</em>
+            <span>Looker Studio</span><em>·</em>
+            <span>Google Ads</span><em>·</em>
+            <span>TikTok Ads</span><em>·</em>
+            <span>Meta Ads</span><em>·</em>
+            <span>Performance</span><em>·</em>
+            <span>PMax</span><em>·</em>
+            <span>Demand Gen</span><em>·</em>
+            <span>ROAS</span><em>·</em>
+            <span>LinkedIn Ads</span><em>·</em>
+            <span>Spotify Ads</span><em>·</em>
+            <span>Looker Studio</span><em>·</em>
         </div>
     </div>
 
@@ -350,6 +352,25 @@
     </section>
     -->
 
+    <!-- COMENTARIOS -->
+    <section class="reviews" id="comentarios">
+        <div class="container">
+            <div class="section-label reveal">Comentarios</div>
+            <h2 class="section-title reveal">Lo que <em>dicen</em></h2>
+            <div class="reviews__list">
+                <!-- Comentario de boletinclaro.es: texto borrador, confírmalo/ajústalo con el cliente.
+                     Para añadir más, copia un bloque <figure class="review"> completo. -->
+                <figure class="review reveal">
+                    <blockquote class="review__quote">Esther nos ayudó con las campañas de paid media de boletinclaro.es: dejó las cuentas ordenadas y rindiendo, y explica cada decisión con claridad.</blockquote>
+                    <figcaption class="review__author">
+                        <span class="review__name">boletinclaro.es</span>
+                        <span class="review__role">Cliente · Paid Media</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACTO -->
     <section class="contact" id="contacto">
         <div class="contact__center">
@@ -410,14 +431,9 @@
         <a href="#servicios"   class="pp__dot" data-label="Servicios"></a>
         <a href="#experiencia" class="pp__dot" data-label="Experiencia"></a>
         <!-- Reactivar junto con el blog: <a href="#articulos" class="pp__dot" data-label="Blog"></a> -->
+        <a href="#comentarios" class="pp__dot" data-label="Comentarios"></a>
         <a href="#contacto"    class="pp__dot" data-label="Contacto"></a>
     </nav>
-
-    <!-- Cursor personalizado -->
-    <div class="cursor" aria-hidden="true">
-        <div class="cursor__dot"></div>
-        <div class="cursor__ring"></div>
-    </div>
 
     <script src="js/main.js"></script>
 </body>
