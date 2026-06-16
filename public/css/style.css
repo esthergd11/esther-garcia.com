@@ -354,10 +354,11 @@ body::after {
 }
 .exp__card-num {
     font-family: var(--serif);
-    font-size: 0.72rem;
+    font-size: clamp(1.8rem, 2.6vw, 2.4rem);
     font-style: italic;
+    line-height: 1;
     color: var(--accent-mid);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 .exp__card-company {
     font-family: var(--serif);
@@ -502,22 +503,21 @@ body::after {
 
 .statement__line {
     display: block;
-    font-family: var(--display);
-    font-size: clamp(3.2rem, 8vw, 8rem);
-    font-weight: 200;
-    line-height: 1.0;
-    letter-spacing: -0.04em;
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
     color: var(--text);
+    text-align: left;
 }
-.statement__line:nth-child(odd)  { text-align: left; }
-.statement__line:nth-child(even) { text-align: right; font-weight: 800; }
 
 /* La línea con la palabra rotatoria */
 .statement__line--rotate {
-    text-align: right;
-    font-weight: 800;
+    text-align: left;
+    font-weight: 400;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: baseline;
     gap: 0;
     overflow: visible;
@@ -528,7 +528,7 @@ body::after {
     display: inline-block;
     position: relative;
     /* La altura se fija al tamaño de la fuente */
-    height: 1.05em;
+    height: 1.2em;
     /* El ancho se adapta a la palabra más larga */
     min-width: 5ch;
     overflow: hidden;
@@ -538,12 +538,13 @@ body::after {
 .rot-word {
     display: block;
     position: absolute;
-    right: 0;
+    left: 0;
     bottom: 0;
-    font-family: var(--display);
-    font-size: clamp(3.2rem, 8vw, 8rem);
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
     color: var(--accent);
     white-space: nowrap;
     opacity: 0;
@@ -562,8 +563,8 @@ body::after {
 
 .statement__dot {
     color: var(--accent);
-    font-family: var(--display);
-    font-weight: 800;
+    font-family: var(--serif);
+    font-weight: 400;
     flex-shrink: 0;
 }
 
@@ -623,7 +624,7 @@ body::after {
 
 .svc-row {
     display: grid;
-    grid-template-columns: 56px 1fr 1.2fr 32px;
+    grid-template-columns: 84px 1fr 1.2fr 32px;
     align-items: center;
     gap: 48px;
     padding: 36px 0;
@@ -651,10 +652,10 @@ body::after {
 .svc-row__num {
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 300;
-    font-size: 0.82rem;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+    line-height: 1;
     color: var(--muted);
-    padding-top: 2px;
 }
 .svc-row__title {
     font-family: var(--serif);
@@ -941,7 +942,7 @@ body::after {
     .about__photo-stats { flex-direction: row; gap: 32px; }
 
     .svc-list { padding: 0 24px 60px; }
-    .svc-row { grid-template-columns: 40px 1fr 32px; gap: 20px; }
+    .svc-row { grid-template-columns: 64px 1fr 32px; gap: 20px; }
     .svc-row__desc { display: none; }
     .exp__cards { grid-template-columns: repeat(2, 1fr); }
     .contact__center { padding: 60px 24px; }
